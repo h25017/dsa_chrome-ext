@@ -36,4 +36,4 @@ Egyetlen kattintással kinyered egy weboldal design system elemeit - színpalett
 
 ---
 
-Made with Claude Code
+én + Claude Code
