@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Design System Analyzer",
+  "version": "1.0.0",
+  "description": "Egyetlen kattintással kinyerheted egy weboldal design system elemeit - színpalettát, tipográfiát, képeket és logókat.",
+  "author": "Zsolt",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Design System Analyzer"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["utils/colorAnalyzer.js", "utils/typographyAnalyzer.js", "utils/imageAnalyzer.js", "content/content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

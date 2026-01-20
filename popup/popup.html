@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=320">
+  <title>Design System Analyzer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-mark">DS</div>
+      <div class="header-text">
+        <h1 class="title">Design System Analyzer</h1>
+        <p class="subtitle">Weboldal design elemek kinyerése</p>
+      </div>
+    </header>
+
+    <!-- Analyze Button -->
+    <button id="analyzeBtn" class="analyze-btn">
+      <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <span class="btn-text">Oldal elemzése</span>
+    </button>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="loading-state hidden">
+      <div class="spinner"></div>
+      <p>Elemzés folyamatban...</p>
+    </div>
+
+    <!-- Error State -->
+    <div id="errorState" class="error-state hidden">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <p class="error-text"></p>
+    </div>
+
+    <!-- Results Container -->
+    <div id="resultsContainer" class="results-container hidden">
+
+      <!-- Colors Section -->
+      <section class="section" id="colorsSection">
+        <div class="section-header" data-section="colors">
+          <svg class="section-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="13.5" cy="6.5" r="2.5"/><circle cx="6.5" cy="13.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>
+            <path d="M13.5 9v3.5a2 2 0 0 1-2 2H9"/>
+          </svg>
+          <span class="section-title">Színpaletta</span>
+          <span class="section-count" id="colorsCount"></span>
+          <svg class="section-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="section-content" id="colorsContent">
+          <div id="colorsList" class="colors-list"></div>
+          <p class="empty-state hidden" id="colorsEmpty">Nincs szín az oldalon</p>
+        </div>
+      </section>
+
+      <!-- Typography Section -->
+      <section class="section" id="typographySection">
+        <div class="section-header" data-section="typography">
+          <svg class="section-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/>
+          </svg>
+          <span class="section-title">Tipográfia</span>
+          <svg class="section-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="section-content" id="typographyContent">
+          <div id="fontFamiliesList" class="font-families-list"></div>
+          <div id="headingsList" class="headings-list"></div>
+          <div id="bodyText" class="body-text"></div>
+          <p class="empty-state hidden" id="typographyEmpty">Nincs tipográfia információ</p>
+        </div>
+      </section>
+
+      <!-- Images Section -->
+      <section class="section" id="imagesSection">
+        <div class="section-header" data-section="images">
+          <svg class="section-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+          </svg>
+          <span class="section-title">Képek & Logók</span>
+          <span class="section-count" id="imagesCount"></span>
+          <svg class="section-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+        <div class="section-content" id="imagesContent">
+          <div id="logoContainer" class="logo-container"></div>
+          <div id="imagesList" class="images-list"></div>
+          <div id="svgsList" class="svgs-list"></div>
+          <div id="backgroundsList" class="backgrounds-list"></div>
+          <p class="empty-state hidden" id="imagesEmpty">Nincs kép az oldalon</p>
+        </div>
+      </section>
+
+      <!-- Export Button -->
+      <button id="exportBtn" class="export-btn">
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span class="btn-text">Teljes jelentés letöltése</span>
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <button id="wpCheckBtn" class="wp-check-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        Ez WordPress oldal?
+      </button>
+      <div id="wpResult" class="wp-result hidden"></div>
+      <p>Design System Analyzer v1.0.0</p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
