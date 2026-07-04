@@ -35,5 +35,3 @@ Egyetlen kattintással kinyered egy weboldal design system elemeit - színpalett
 - Frissítéshez: `chrome://extensions` → 🔄 ikon az extension-nél
 
 ---
-
-én + Claude Code
